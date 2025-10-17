@@ -13,3 +13,5 @@ image = { version = "0.25", features = ["png"] }
 serde = { version = "1.0", features = ["derive"] }
 toml = "0.9"
 dirs-2 = "3.0"
+walkdir = "2.5"
+ignore = "0.4"

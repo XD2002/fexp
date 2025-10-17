@@ -9,6 +9,7 @@ pub mod app;
 pub mod conversion;
 pub mod config;
 pub mod settings;
+pub mod search;
 
 fn main() -> Result<(), eframe::Error> {
     // Define native options for the application

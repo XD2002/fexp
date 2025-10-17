@@ -2,14 +2,12 @@ use crate::{config::Config, sort::{Alphabetical, AlphabeticalDirectoriesFirst, S
 
 pub struct Settings {
     pub hide_hidden_files: bool,
-    pub sorting_stratgy: Box<dyn Sorter>,
+    pub sorting_strategy: Box<dyn Sorter>,
 }
 
 impl Settings {
     pub fn load() -> Self {
         let config = Config::load();
-
-        print!("{:?}", config);
 
         let sorting_strategy: Box<dyn Sorter> = match config.sorting_strategy.as_str() {
             "alpha_dir_first" => Box::new(AlphabeticalDirectoriesFirst),
@@ -19,7 +17,7 @@ impl Settings {
 
         Self {
             hide_hidden_files: config.hide_hidden_files,
-            sorting_stratgy: sorting_strategy,
+            sorting_strategy: sorting_strategy,
         }
     }
 }

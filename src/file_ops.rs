@@ -1,4 +1,4 @@
-use std::fs;
+use std::fs::{self, remove_file, File};
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
@@ -43,7 +43,7 @@ pub fn open_file(path: &Path) {
         .expect("Failed to open file");
 }
 
-pub fn open_file_with(path: &Path, app: &Path) {
+pub fn open_file_with(path: &Path, app: &String) {
     #[cfg(target_os = "linux")]
     Command::new(app)
         .arg(path)
@@ -78,4 +78,17 @@ pub fn get_file_type(path: &Path) -> FileType {
     } else {
         FileType::Unknown
     }
+}
+
+pub fn change_name(path: &Path) {
+    todo!("implement");
+}
+
+pub fn new_file(dir_path: &Path, file_name: String) {
+    let dir_path_str = dir_path.to_str().unwrap();
+    let _ = File::create(format!("{}{}", dir_path_str, file_name));
+}
+
+pub fn delete_file(path: &Path) {
+    let _ = remove_file(path);
 }
